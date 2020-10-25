@@ -1,0 +1,28 @@
+Teams{
+    id: INT, primary key
+    Name: CHAR(25), UNIQUE //team name
+}
+
+Players{
+    id: INT, primary key
+    First: CHAR(25), UNIQUE //first name
+    Last: CHAR(25), UNIQUE //last name
+    Team: INT, foreign key to Teams table
+}
+
+Events{
+    id: INT, primary key
+    Player: INT, foreign key to Players table
+    Team: INT, foreign key to Teams table
+    Date: DATE
+    Type: ENUM ('passing', 'rushing', 'fieldGoal')//only one type of score
+    Points: ENUM ('3', '7')//only one based on type of score
+    QB: INT, foreign key to Players table//
+}
+
+Games{
+    id: INT, primary key
+    Team: INT, foreign key to Teams table
+    OppTeam: INT, foreign key to Teams table
+    Date: DATE, foreign key to Events table
+}
